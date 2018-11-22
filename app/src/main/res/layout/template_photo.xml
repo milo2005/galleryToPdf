@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <data>
+        <variable
+            name="item"
+            type="com.example.darfe.galleryapp.ui.gallery.adapter.PhotoItem"/>
+        <variable
+            name="position"
+            type="int"/>
+        <variable
+            name="onRemove"
+            type="io.reactivex.subjects.PublishSubject"/>
+        <variable
+            name="onClick"
+            type="io.reactivex.subjects.PublishSubject"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:foreground="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{() -> onClick.onNext(position)}"
+        >
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:padding="1dp"
+            android:id="@+id/img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:id="@+id/imageView"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/clear_bg"
+            app:srcCompat="@drawable/ic_clear"
+            android:onClick="@{()-> onRemove.onNext(position)}"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
